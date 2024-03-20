@@ -1,0 +1,3 @@
+edrie is grandparent of sari
+edrie is father of mohammed
+mohammed is parent of sari
