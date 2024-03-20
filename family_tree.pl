@@ -38,6 +38,7 @@ female(kalkidan).
 female(mantegbosh).
 
 
+
 # defined for my self and wife
 male(mekdim).
 female(sari).
@@ -74,13 +75,119 @@ male(natanim).
 
 
 
+# define the parent and child relationship
+# abreham and yeshit is parent of kebede
+
+parent(abreham, kebede).
+parent(yeshi, kebede).
+
+parent(abreham, alemu).
+parent(abreham, alemenesh).
+parent(yeshi, alemu).
+parent(yeshi, alemenesh).
+
+# grand parents and thier children from both side of the family
+# TBD: leave the wife of the grand father since it will increse the complexity of the family tree just stick with the male tree maybe later TBC maybe later
+# kebede married with berkitu and they have children
+parent(kebede, yohanes).
+parent(berkitu, yohanes).
+
+# also relate the uncle and autns because they are the children of the grand parents
+parent(kebede, abebe).
+parent(kebede, tamerat).
+parent(kebede, wondwesen).
+parent(kebede, kalkidan).
+parent(kebede, mantegbosh).
+
+
+parent(yohanes, mekdim).
+parent(fkr, mekdim).
+
+
+# relate the brother and sister in law
+parent(yohanes, yeabsira).
+parent(yohanes, binni).
+
+# relate the cousin and cousin's wife
+parent(abebe, jocy).
+
+# relate the daughter and son
+parent(mekdim, nati).
+
+# relate the nephew and niece from bother brother and sister
+# from brother side 
+parent(yeabsira, girma).
+parent(yeabsira, berut).
+
+# from their sister side
+parent(binni, mikiyas).
+parent(binni, mesi).
+
+# relate the grand cousin
+parent(jocy, natanim).
 
 
 
 
+% Rule for grandfather
+grandfather(X, Y) :-
+    male(X),
+    parent(X, Z),
+    parent(Z, Y).
 
+% Rule for grandmother
+grandmother(X, Y) :-
+    female(X),
+    parent(X, Z),
+    parent(Z, Y).
 
+% Rule for uncle
+uncle(X, Y) :-
+    male(X),
+    parent(Z, Y),
+    parent(W, Z),
+    parent(W, X),
+    X \= Z.
 
+% Rule for aunt
+aunt(X, Y) :-
+    female(X),
+    parent(Z, Y),
+    parent(W, Z),
+    parent(W, X),
+    X \= Z.
+
+% Rule for brother
+brother(X, Y) :-
+    male(X),
+    parent(Z, X),
+    parent(Z, Y),
+    X \= Y.
+
+% Rule for sister
+sister(X, Y) :-
+    female(X),
+    parent(Z, X),
+    parent(Z, Y),
+    X \= Y.
+
+% Rule for cousin
+cousin(X, Y) :-
+    parent(Z, X),
+    parent(W, Y),
+    (brother(Z, W); sister(Z, W)).
+
+% Rule for nephew
+nephew(X, Y) :-
+    male(X),
+    parent(Z, X),
+    (brother(Z, Y); sister(Z, Y)).
+
+% Rule for niece
+niece(X, Y) :-
+    female(X),
+    parent(Z, X),
+    (brother(Z, Y); sister(Z, Y)).
 
 
 
