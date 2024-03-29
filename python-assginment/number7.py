@@ -36,6 +36,7 @@ class StudentGradeCalculator:
             return self.grades_values.get(grade, 0)
     
     def calculate_student_gpa(self, grouped_student_grades):
+         # CGPA=(credit1*letter1_grade1+credit2*letter_grade2+ credit3*letter_grade3)/total_credit]
         student_gpa = {}
 
         total_credit_hours = sum(self.credit_hours.values())
@@ -64,7 +65,9 @@ class StudentGradeCalculator:
                            
 if __name__ == "__main__":
     student_grade_calculator = StudentGradeCalculator()
+
     grouped_student_grade = student_grade_calculator.group_student_grade_using_tuple()
-    # CGPA=(credit1*letter1_grade1+credit2*letter_grade2+ credit3*letter_grade3)/total_credit]
+   
     cgpa_of_students = student_grade_calculator.calculate_student_gpa(grouped_student_grade)
+   
     student_grade_calculator.student_result_file_writer(cgpa_of_students)   
