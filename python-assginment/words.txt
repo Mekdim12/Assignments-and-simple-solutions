@@ -46,6 +46,7 @@ lambda
 mu 
 nu 
 xi 
+astu
 omicron 
 pi 
 rho 
@@ -56,3 +57,5 @@ phi
 chi 
 psi 
 omega
+amendment
+after
