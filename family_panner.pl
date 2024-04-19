@@ -11,6 +11,7 @@
 
 
 /*
+ :TBR for parental relation
 alemnesh is mirat for endrie and zemuye 
 tsion , misrak, aster are mirat for mohommed and alemenesh
 
@@ -38,13 +39,13 @@ sara,  emebet  are aunt for aklasiya , samuel, abenezer
 sisay, ashenafi,  dagim are uncle for yeabkal, soliyana
 sara,  emebet  are aunt for yeabkal, soliyana
 
-
 */
 
 % for defining the relationship caluses in not contigous way because for readbaility its better to define the relationship in this way
 :- discontiguous male/1.
 :- discontiguous female/1.
 :- discontiguous parent/2.
+:- discontiguous sibling/2.
 
 % grand father and mother
 male(endrie).
@@ -186,7 +187,7 @@ parent(ashenafi, samuel).
 parent(misrak, samuel).
 
 parent(ashenafi, abenezer).
-parent(misrak, abemezer).
+parent(misrak, abenezer).
 
 
 % family of belays
@@ -206,8 +207,8 @@ parent(embet, markonal).
 % hardcoded relationship because the name of the parent
 % TBD: know issue for resloving the parent of the mother side  of family
 sibling(dula, getenesh).
-sibling(dula, almesh).
-sibling(getenesh, almesh).
+sibling(dula, almnesh).
+sibling(getenesh, almnesh).
 
 
 % ======> define the rules for the relationship <=======
@@ -273,12 +274,9 @@ brother(X, Y) :- male(X), sibling(X, Y).
 
 
 
-
 % ====> descriptive response deined as rules <====
-find_uncles(Person, Uncles) :-
-    findall(Uncle, uncle(Uncle, Person), Uncles).
 
-% Function to find father
+% Function to find of fatrter
 find_father(Person, Father) :-
     findall(F, (parent(F, Person), male(F)), Fathers),
     member(Father, Fathers).
@@ -288,11 +286,14 @@ find_mother(Person, Mother) :-
     findall(M, (parent(M, Person), female(M)), Mothers),
     member(Mother, Mothers).
 
-% Function to find aunts
+% Function to find list of aunts
 find_aunts(Person, Aunts) :-
     findall(Aunt, aunt(Aunt, Person), Aunts).
 
-% Function to find siblings
+find_uncles(Person, Uncles) :-
+    findall(Uncle, uncle(Uncle, Person), Uncles).
+
+% Function to find of siblings
 find_siblings(Person, Siblings) :-
     findall(Sibling, sibling(Sibling, Person), Siblings).
 
@@ -300,14 +301,15 @@ find_siblings(Person, Siblings) :-
 
 
 
-
 % konjo remove this before submit example queries elegant one should return name or (list of name)of requested person accorind to the relationship and gender
-parent(Mother, abenezer), female(Mother).
-parent(Father, abenezer), male(Father).
-find_siblings(abenezer, Siblings).
-find_uncles(abenezer, Uncles).
-find_aunts(abenezer, Aunts).
-find_mother(abenezer, Mother).
-find_father(abenezer, Father).
+/*
+parent(Mother, sara), female(Mother).
+parent(Father, sara), male(Father).
+find_siblings(sara, Siblings).
+find_uncles(sara, Uncles).
+find_aunts(sara, Aunts).
+find_mother(sara, Mother).
+find_father(sara, Father).
 
-% konjo the rest of rules are relatively easy just query brother(someone , tosomeone)
+*/
+% konjo the rest of rules are relatively easy to figure out eshe just query brother(someone , tosomeone)

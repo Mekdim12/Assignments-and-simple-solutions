@@ -167,6 +167,7 @@ brother(X, Y) :-
 % Rule for sister
 sister(X, Y) :-
     female(X),
+    female(Y),
     parent(Z, X),
     parent(Z, Y),
     X \= Y.
