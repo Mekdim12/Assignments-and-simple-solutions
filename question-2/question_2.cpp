@@ -7,11 +7,13 @@ using namespace std;
 void check_int_type_limit(long long input_value)
 {
     int max_int = numeric_limits<int>::max();
-    cout << "Max int" << ": " << max_int << endl;
+    cout << "\nMax int" << ": " << max_int << endl;
     cout << "Max int + 1" << ": " << max_int + 1 << " (Overflow)" << endl;
+
     int min_int = numeric_limits<int>::min();
     cout << "Min int" << ": " << min_int << endl;
     cout << "Min int - 1" << ": " << min_int - 1 << " (Underflow)" << endl;
+
     if (input_value > max_int)
     {
         cout << "Input value " << input_value << " is out of int range!" << endl;
@@ -30,11 +32,12 @@ void check_int_type_limit(long long input_value)
 void check_double_type_limit(long double input_value)
 {
     double max_double = numeric_limits<double>::max();
-    cout << "Max double" << ": " << max_double << endl;
-    cout << "Max double * 2" << ": " << max_double * 2 << " (Overflow to Inf)" << endl;
+    cout << "\nMax double" << ": " << max_double << endl;
+    cout << "Max double * 2" << ": " << max_double * 2 << " (Overflow)" << endl;
+
     double min_double = numeric_limits<double>::lowest();
     cout << "Min double" << ": " << min_double << endl;
-    cout << "Min double * 2" << ": " << min_double * 2 << " (Underflow to -Inf)" << endl;
+    cout << "Min double * 2" << ": " << min_double * 2 << " (Underflow)" << endl;
     if (input_value > max_double)
     {
         cout << "Input value " << input_value << " is out of double range!" << endl;
@@ -53,11 +56,12 @@ void check_double_type_limit(long double input_value)
 void check_float_type_limit(long double input_value)
 {
     float max_float = numeric_limits<float>::max();
-    cout << "Max float" << ": " << max_float << endl;
-    cout << "Max float * 2" << ": " << max_float * 2 << " (Overflow to Inf)" << endl;
+    cout << "\nMax float" << ": " << max_float << endl;
+    cout << "Max float * 2" << ": " << max_float * 2 << " (Overflow)" << endl;
     float min_float = numeric_limits<float>::lowest();
     cout << "Min float" << ": " << min_float << endl;
-    cout << "Min float * 2" << ": " << min_float * 2 << " (Underflow to -Inf)" << endl;
+    cout << "Min float * 2" << ": " << min_float * 2 << " (Underflow)" << endl;
+
     if (input_value > max_float)
     {
         cout << "Input value " << input_value << " is out of float range!" << endl;
@@ -76,7 +80,7 @@ void check_float_type_limit(long double input_value)
 void check_char_type_limit(long long input_value)
 {
     char max_char = numeric_limits<char>::max();
-    cout << "Max char" << ": " << static_cast<int>(max_char) << endl;
+    cout << "\nMax char" << ": " << static_cast<int>(max_char) << endl;
     cout << "Max char + 1" << ": " << static_cast<int>(max_char + 1) << " (Overflow)" << endl;
     char min_char = numeric_limits<char>::min();
     cout << "Min char" << ": " << static_cast<int>(min_char) << endl;
@@ -100,7 +104,7 @@ int main()
 {
 
     long double input = 10'000'000'000;
-    cout << "Max input value: " << input << endl;
+    cout << "==> Max input value: " << input << endl;
 
     check_int_type_limit((long long)input);
     check_double_type_limit(input);
