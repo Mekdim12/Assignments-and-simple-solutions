@@ -14,7 +14,8 @@ struct USER_dETAIL
 
 char *legacy_gets(char *buffer)
 {
-    // properties of gets from cstdio library
+    // ref for later properties from cstdio library
+
     // Reads sequential characters from stdin, stops when it sees a newline or EOF; never stores the newline, does append a null terminator.
     // Never checks how much space the destination buffer has—every character keeps writing past the end if input is longer than expected, so the moment you exceed the buffer you hit undefined behavior.
     // Shorter input than the buffer: copies all characters, writes '\0', works as long as there’s no overflow.
@@ -81,6 +82,7 @@ char *custom_llccopy(const char *str, int buffer_size = 100)
 
 void example_1a(int buffer_size = 4)
 {
+    cout << "\n Example 1.a buffer overflow using gets" << endl;
     char buffer[buffer_size];
     // https://www.programiz.com/cpp-programming/library-function/cstdio/gets
     // its deprecated due to safety issues maybe fake it get the code from cstdio
@@ -98,6 +100,7 @@ void example_1a(int buffer_size = 4)
 
 void example_1b(int buffer_size = 6)
 {
+    cout << "\n Example 1.b buffer overflow using cin" << endl;
     char buf[buffer_size];
     cout << "please enter a string: ";
     cin >> buf;
@@ -112,6 +115,7 @@ void example_1b(int buffer_size = 6)
 
 void example_2(int max_input_size = 200)
 {
+    cout << "\n Example 2 buffer overflow using memcpy" << endl;
     char buf[64];
     char user_input[max_input_size];
     int bytes;
@@ -129,26 +133,27 @@ void example_2(int max_input_size = 200)
     {
         cout << "Warning: Buffer overflow detected!" << endl;
     }
-    cout << "Copied to buf.\n";
-    cout << "Buffer contents: " << buf << endl;
+    cout << "Copied to buf\n";
+    cout << "Finnal Buffer contents: " << buf << endl;
 }
 
 void example_3()
 {
+    cout << "\n Example 3 buffer overflow using strcpy" << endl;
     const char *original = "HelloWorldFromCPlusPlus";
     char *modified = custom_llccopy(original, 3);
     cout << "Original: " << original << endl;
     cout << "Modified: " << modified << endl;
-    free(modified);
 }
 
 void example_4()
 {
-    // come back to this later
+    // MY ToDo: come back to this later
 }
 
 void example_5(int username_length = 2)
 {
+    cout << "\n Example 5 buffer overflow using with mock MultiByteToWideChar " << endl;
     // WCHAR unicodeUser[username_length + 1];
     const char *WCHAR;
 
@@ -171,11 +176,11 @@ void example_5(int username_length = 2)
 }
 int main()
 {
-    // example_1a();
-    // example_1b();
-    // example_2();
-    // example_3();
-    // example_4();
+    example_1a();
+    example_1b();
+    example_2();
+    example_3();
+    example_4();
     example_5();
     return 0;
 }
