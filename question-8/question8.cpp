@@ -37,6 +37,7 @@ const string *leak_stack_pointer()
 
 void dangling_pointer_demo()
 {
+    cout << "\n=== Dangling Pointer Demo ===" << endl;
     const string *dangling = leak_stack_pointer();
     cout << "Dangling pointer address: " << static_cast<const void *>(dangling) << endl;
     cout << "Dereferencing dangling pointer (undefined behavior): " << *dangling << endl;
@@ -44,6 +45,7 @@ void dangling_pointer_demo()
 
 void use_after_free_demo()
 {
+    cout << "\n=== Use After Free Demo ===" << endl;
     cout << "USE AFTER FREE" << endl;
     int *int_pointer = new int(42);
     cout << "Allocated int_pointer @" << int_pointer << " = " << *int_pointer << "\n";
@@ -72,6 +74,7 @@ int print_value(int x)
 
 void returned_oriented_programming_demo()
 {
+    cout << "\n=== Return Oriented Programming Demo ===" << endl;
     // creatre a pinter to function
     int (*chain_of_matmathaal_operations[])(int) = {print_value, add_pi, multiply_pi};
 
@@ -98,6 +101,7 @@ void hijacked_flow_the_program()
 
 void control_flow_hijacking_demo(bool is_controlled_by_Attacker = true)
 {
+    cout << "\n=== Control Flow Hijacking Demo ===" << endl;
     void (*function_pointer)() = normal_flow_the_program;
     //  spf first it will go to normal flow the program
 
@@ -116,7 +120,7 @@ int main()
     cout << "=== Vulnerability demonstrations  ===";
     use_after_free_demo();
     returned_oriented_programming_demo();
-    dangling_pointer_demo();
+    // dangling_pointer_demo();
     control_flow_hijacking_demo();
     return 0;
 }
